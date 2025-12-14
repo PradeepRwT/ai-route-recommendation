@@ -3,12 +3,22 @@ const cors = require("cors");
 const connectDB = require("./config/db");
 require("dotenv").config();
 
-// DB connect
 connectDB();
 
 const app = express();
 
-app.use(cors());
+app.use(
+  cors({
+    origin: [
+      "http://localhost:3000",
+      "https://ai-route-recommendation.vercel.app"
+    ],
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+    credentials: true
+  })
+);
+
 app.use(express.json());
 
 // Routes
