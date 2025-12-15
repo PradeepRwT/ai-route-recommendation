@@ -35,6 +35,7 @@ function Dashboard() {
       setSuccess("");
 
       // 1️⃣ Backend AI logic
+      // eslint-disable-next-line no-unused-vars
       const aiRes = await API.post("/route/recommend", {
         source,
         destination,

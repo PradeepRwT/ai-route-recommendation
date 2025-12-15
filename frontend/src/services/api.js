@@ -4,13 +4,16 @@ const API = axios.create({
   baseURL: `${process.env.REACT_APP_API_URL}/api`,
 });
 
-// Token attach
-API.interceptors.request.use((req) => {
-  const token = localStorage.getItem("token");
-  if (token) {
-    req.headers.Authorization = `Bearer ${token}`;
-  }
-  return req;
-});
+// Token attach (login ke baad)
+API.interceptors.request.use(
+  (req) => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      req.headers.Authorization = `Bearer ${token}`;
+    }
+    return req;
+  },
+  (error) => Promise.reject(error)
+);
 
 export default API;
